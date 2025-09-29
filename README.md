@@ -37,7 +37,7 @@ Développée pour **Banque Al Baraka** par **SoluBank Systems**, cette solution 
 - **Analyse des anomalies** avec seuils configurables
 - **Rapports d'activité** par période
 
-## 🛠️ Technologies Utilisées
+##  Technologies Utilisées
 
 - **Java 17** (records, sealed classes, switch expressions, var)
 - **Programmation fonctionnelle** (Stream API, lambda, Optional, Collectors)
@@ -98,7 +98,7 @@ src/
 - Navigation intuitive entre fonctionnalités
 - Affichage formaté des données
 
-## 📊 Structure de la Base de Données
+##  Structure de la Base de Données
 
 ### Tables Principales
 
@@ -134,3 +134,8 @@ CREATE TABLE Transaction (
 );
 
 ```
+
+##  Diagramme Class
+
+<img width="1518" height="643" alt="image" src="https://github.com/user-attachments/assets/780c5caa-1ae1-4b75-bfa4-53dba2c6c4ec" />
+

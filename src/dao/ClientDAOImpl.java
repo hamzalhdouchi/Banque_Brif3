@@ -51,4 +51,18 @@ public class ClientDAOImpl implements ClientDAO {
             return false;
         }
     }
+
+    @Override
+    public boolean supprimer(String id) {
+        String sql = "delete from client where id = ?";
+
+        try{
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1,id);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            return  false;
+        }
+    }
 }

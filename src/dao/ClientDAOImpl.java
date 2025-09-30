@@ -16,4 +16,23 @@ public class ClientDAOImpl implements ClientDAO {
     public ClientDAOImpl(Connection connection) {
         this.connection = connection;
     }
+
+    @Override
+    public boolean ajouter(Client client) {
+
+
+        String sql = "insert into client(id ,nom , email) values (?,?,?)";
+
+        try{
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1,client.id());
+            ps.setString(2,client.nom());
+            ps.setString(3,client.email());
+            ps.execute();
+            return true;
+
+        } catch (SQLException e) {
+            return  false;
+        }
+    }
 }

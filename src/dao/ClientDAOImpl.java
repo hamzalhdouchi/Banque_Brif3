@@ -36,7 +36,6 @@ public class ClientDAOImpl implements ClientDAO {
         }
     }
 
-
     @Override
     public boolean modifier(Client client) {
         String sql = "update client set nom = ?, email = ? where id = ?";

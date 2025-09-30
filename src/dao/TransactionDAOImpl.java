@@ -41,5 +41,17 @@ public class TransactionDAOImpl implements TransactionDAO {
         return false;
     }
 
+    public boolean supprimer(Transaction transaction) {
+        String sql = "delete from transaction where id = ?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, String.valueOf(transaction.id()));
+            ps.execute();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Erreur Ajout de la transaction "+e.getMessage());
+            return false;
+        }
+    }
 
 }

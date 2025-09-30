@@ -65,4 +65,16 @@ public class ClientDAOImpl implements ClientDAO {
             return  false;
         }
     }
+
+    @Override
+    public Optional<Client> trouverParId(String id) {
+        List<Client> clients = new ArrayList<>();
+        clients = trouverTous();
+        Client client = null;
+        client = clients.stream().filter(c -> c.id().equals(id)).findFirst().orElse(null);
+        if (client == null) {
+            return Optional.empty();
+        }
+        return Optional.of(client);
+    }
 }

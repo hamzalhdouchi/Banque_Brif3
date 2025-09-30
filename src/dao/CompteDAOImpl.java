@@ -96,4 +96,41 @@ public class CompteDAOImpl implements CompteDAO {
         }
         return false;
     }
+
+    public List<Compte>  trouverTous() {
+        String sql = "select * from compte";
+        List<Compte> comptes = new ArrayList<>();
+
+        try{
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String id = rs.getString("id");
+                String numero = rs.getString("numero");
+                double solde = rs.getDouble("solde");
+                String idClient = rs.getString("id_client");
+                String type = rs.getString("type_compte");
+                TypeCompte typeCompte = TypeCompte.valueOf(type);
+                double tauxInteret = rs.getDouble("taux_interet");
+                double decouvertAutorise = rs.getDouble("decouvert_autorise");
+
+                if(typeCompte.equals(TypeCompte.COURANT)){
+                    CompteCourant compteCourant = new CompteCourant(id, numero, solde, idClient, decouvertAutorise,typeCompte);
+                    comptes.add(compteCourant);
+
+                } else if (typeCompte.equals(TypeCompte.EPARGNE)) {
+                    CompteEpargne compteEpargne = new CompteEpargne(id, numero, solde, idClient, tauxInteret, typeCompte);
+                    comptes.add(compteEpargne);
+
+                }
+
+            }
+            return comptes
+
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+            return List.of();
+
+        }
+    }
 }

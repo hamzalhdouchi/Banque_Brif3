@@ -82,4 +82,18 @@ public class CompteDAOImpl implements CompteDAO {
 
         }
     }
+
+
+    @Override
+    public boolean supprimer(String numero) {
+        String  sql = "DELETE FROM compte WHERE numero = ?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, numero);
+            ps.executeUpdate();
+        }catch (SQLException e){
+            System.out.println("Erreur lors de la suppression du compte" + e.getMessage());
+        }
+        return false;
+    }
 }

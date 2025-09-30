@@ -22,4 +22,24 @@ public class TransactionDAOImpl implements TransactionDAO {
     }
 
 
+    @Override
+    public boolean ajouter(Transaction transaction) {
+        String sql = "insert into transaction (date_transaction,montant,type_transaction,id_compte,lieu) values (?,?,?,?,?)";
+
+        try{
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setTimestamp(1,  Timestamp.valueOf(transaction.date()));
+            ps.setDouble(2, transaction.montant());
+            ps.setString(3, String.valueOf(transaction.type()));
+            ps.setString(4, String.valueOf(transaction.idCompte()));
+            ps.setString(5, transaction.lieu());
+            ps.executeUpdate();
+            return true;
+        }catch(SQLException e){
+            System.out.println("Erreur Ajout de la transaction "+e.getMessage());
+        }
+        return false;
+    }
+
+
 }

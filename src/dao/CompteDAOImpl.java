@@ -15,7 +15,7 @@ import java.util.List;
 
 public class CompteDAOImpl implements CompteDAO {
 
-    private static Connection connection;
+    private static Connection  connection;
 
     public CompteDAOImpl(Connection connection) {
         this.connection = connection;
@@ -83,7 +83,6 @@ public class CompteDAOImpl implements CompteDAO {
         }
     }
 
-
     @Override
     public boolean supprimer(String numero) {
         String  sql = "DELETE FROM compte WHERE numero = ?";
@@ -96,6 +95,8 @@ public class CompteDAOImpl implements CompteDAO {
         }
         return false;
     }
+
+
 
     public List<Compte>  trouverTous() {
         String sql = "select * from compte";
@@ -134,6 +135,7 @@ public class CompteDAOImpl implements CompteDAO {
         }
     }
 
+
     public boolean mettreAJourSolde(String numero, double nouveauSolde) {
         String sql = "UPDATE compte SET solde = ? WHERE numero = ?";
 
@@ -147,4 +149,5 @@ public class CompteDAOImpl implements CompteDAO {
         }
         return false;
     }
+
 }

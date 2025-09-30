@@ -125,12 +125,26 @@ public class CompteDAOImpl implements CompteDAO {
                 }
 
             }
-            return comptes
+            return comptes;
 
         }catch (SQLException e){
             System.out.println(e.getMessage());
             return List.of();
 
         }
+    }
+
+    public boolean mettreAJourSolde(String numero, double nouveauSolde) {
+        String sql = "UPDATE compte SET solde = ? WHERE numero = ?";
+
+        try{
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setDouble(1,nouveauSolde);
+            ps.setString(2,numero);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la suppression du compte" + e.getMessage());
+        }
+        return false;
     }
 }

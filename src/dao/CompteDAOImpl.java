@@ -1,14 +1,19 @@
 package dao;
 
+import dao.Interfase.CompteDAO;
+import dao.enums.TypeCompte;
 import entity.Compte;
 import entity.CompteCourant;
 import entity.CompteEpargne;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class CompteDAOImpl {
+public class CompteDAOImpl implements CompteDAO {
 
     private static Connection connection;
 

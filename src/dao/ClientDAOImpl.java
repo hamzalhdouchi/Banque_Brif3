@@ -77,4 +77,24 @@ public class ClientDAOImpl implements ClientDAO {
         }
         return Optional.of(client);
     }
+
+    @Override
+    public List<Client> trouverTous() {
+        String sql = "select * from client";
+        try{
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            List<Client> clients = new ArrayList<>();
+            while(rs.next()){
+                String id = rs.getString("id");
+                String nom = rs.getString("nom");
+                String email = rs.getString("email");
+                Client client = new Client(id,nom,email);
+                clients.add(client);
+            }
+            return clients;
+        } catch (Exception e) {
+            return  null;
+        }
+    }
 }

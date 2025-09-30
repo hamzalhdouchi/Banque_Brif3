@@ -47,4 +47,39 @@ public class CompteDAOImpl implements CompteDAO {
         }
         return false;
     }
+
+    @Override
+    public void modifier(Compte compte) {
+
+        String sql;
+        if (compte instanceof CompteCourant){
+            sql = "UPDATE compte set solde = ?, numero = ?, decouvert_autorise  = ?  WHERE id = ?";
+
+            try {
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setDouble(1,compte.getSolde());
+                ps.setString(2,compte.getNumero());
+                ps.setDouble(3,((CompteCourant) compte).getDecouvertAutorise());
+                ps.setString(4,compte.getId());
+                ps.executeUpdate();
+                System.out.println("compte modifier");
+            }catch (SQLException e){
+                System.out.println(e.getMessage());
+            }
+
+        }else if (compte instanceof CompteEpargne){
+            sql = "UPDATE compte set solde = ?,numero = ?,   taux_interet = ? WHERE numero = ?";
+            try {
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setDouble(1,compte.getSolde());
+                ps.setString(2,compte.getNumero());
+                ps.setDouble(3,((CompteEpargne) compte).getTauxInteret());
+                ps.setString(4,compte.getNumero());
+                System.out.println("compte modifier");
+            }catch (SQLException e){
+                System.out.println(e.getMessage());
+            }
+
+        }
+    }
 }

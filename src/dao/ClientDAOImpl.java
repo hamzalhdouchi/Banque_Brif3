@@ -11,4 +11,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class ClientDAOImpl implements ClientDAO {
+    private final Connection connection;
+
+    public ClientDAOImpl(Connection connection) {
+        this.connection = connection;
+    }
 }

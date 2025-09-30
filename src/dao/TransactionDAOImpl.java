@@ -14,4 +14,12 @@ import java.util.stream.Collectors;
 
 public class TransactionDAOImpl implements TransactionDAO {
 
+
+    private final Connection connection;
+
+    public TransactionDAOImpl(Connection connection) {
+        this.connection = connection;
+    }
+
+
 }

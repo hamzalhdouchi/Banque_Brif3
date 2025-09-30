@@ -35,4 +35,20 @@ public class ClientDAOImpl implements ClientDAO {
             return  false;
         }
     }
+
+
+    @Override
+    public boolean modifier(Client client) {
+        String sql = "update client set nom = ?, email = ? where id = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1,client.nom());
+            ps.setString(2,client.email());
+            ps.setString(3,client.id());
+            ps.executeUpdate();
+            return true;
+        }catch (SQLException e){
+            return false;
+        }
+    }
 }

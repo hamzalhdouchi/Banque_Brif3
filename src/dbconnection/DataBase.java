@@ -31,4 +31,9 @@ public class DataBase {
         return instance;
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
+
+
 }

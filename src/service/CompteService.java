@@ -28,4 +28,11 @@ public class CompteService {
     public boolean supprimerCompte(String numero) {
         return compteDAO.supprimer(numero);
     }
+
+
+
+    public List<Compte> trouverTo() {
+        return compteDAO.trouverTous();
+    }
+
 }

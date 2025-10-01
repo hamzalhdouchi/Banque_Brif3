@@ -35,4 +35,19 @@ public class CompteService {
         return compteDAO.trouverTous();
     }
 
+
+    public Optional<Compte> trouverParId(String id) {
+
+
+        try {
+            List<Compte> comptes = trouverTo();
+
+            Compte compte = comptes.stream().filter(c -> c.getId().equals(id)).findFirst().orElse(null);
+
+            return Optional.of(compte);
+        }catch (NullPointerException e){
+            return Optional.empty();
+        }
+
+    }
 }

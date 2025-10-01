@@ -51,4 +51,10 @@ public class ClientService {
         return Optional.empty();
     }
 
+    public List<Client> trouverTousLesClients() {
+
+        List<Client> client =  clientDAO.trouverTous();
+        return client;
+    }
+
 }

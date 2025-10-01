@@ -69,4 +69,12 @@ public class ClientService {
         }
         return Optional.of(newClient);
     }
+
+    public double calculerSoldeTotalClient(String idClient) {
+
+        List<Compte>  comptes = compteDAO.trouverTous();
+
+        double total = comptes.stream().filter(p -> p.getIdClient().equals(idClient)).mapToDouble(p -> p.getSolde()).sum();
+        return total;
+    }
 }

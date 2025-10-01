@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 public class CompteService {
 
+
     private CompteDAO compteDAO;
 
     public CompteService(CompteDAO compteDAO) {
@@ -20,6 +21,7 @@ public class CompteService {
         return compteDAO.ajouter(compte);
     }
 
+
     public void modifierCompte(Compte compte) {
         compteDAO.modifier(compte);
     }
@@ -28,7 +30,6 @@ public class CompteService {
     public boolean supprimerCompte(String numero) {
         return compteDAO.supprimer(numero);
     }
-
 
 
     public List<Compte> trouverTo() {
@@ -72,5 +73,10 @@ public class CompteService {
         }catch (NullPointerException e){
             return Optional.empty();
         }
+    }
+
+
+    public boolean mettreAJourSolde(String idCompte, double nouveauSolde) {
+        return compteDAO.mettreAJourSolde(idCompte, nouveauSolde);
     }
 }

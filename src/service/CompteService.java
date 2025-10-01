@@ -16,4 +16,8 @@ public class CompteService {
         this.compteDAO = compteDAO;
     }
 
+    public boolean ajouterCompte(Compte compte) {
+        return compteDAO.ajouter(compte);
+    }
+
 }

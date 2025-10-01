@@ -34,4 +34,11 @@ public class ClientService {
         boolean modifier = clientDAO.modifier(client1);
         return modifier;
     }
+
+
+    public boolean supprimerClient(String id) {
+
+        boolean sup =  clientDAO.supprimer(id);
+        return sup;
+    }
 }

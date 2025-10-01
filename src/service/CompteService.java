@@ -10,4 +10,7 @@ import java.util.stream.Collectors;
 
 public class CompteService {
 
+    private CompteDAO compteDAO;
+
+
 }

@@ -61,4 +61,16 @@ public class CompteService {
         return comptes;
     }
 
+
+    public Optional<Compte> trouverParNumero(String numero) {
+
+        try {
+            List<Compte> comptes = trouverTo();
+            Compte compte = null;
+            compte = comptes.stream().filter(c -> c.getNumero().equals(numero)).findFirst().orElse(null);
+            return Optional.of(compte);
+        }catch (NullPointerException e){
+            return Optional.empty();
+        }
+    }
 }

@@ -50,4 +50,15 @@ public class CompteService {
         }
 
     }
+
+
+    public List<Compte> trouverParClient(String idClient) {
+
+        List<Compte> comptes = new ArrayList<>();
+        List<Compte> compteClients = trouverTo();
+        comptes = compteClients.stream().filter(c->c.getIdClient().equals(idClient)).collect(Collectors.toList());
+
+        return comptes;
+    }
+
 }

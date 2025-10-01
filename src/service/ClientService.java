@@ -41,4 +41,14 @@ public class ClientService {
         boolean sup =  clientDAO.supprimer(id);
         return sup;
     }
+
+    public Optional<Client> trouverClientParId(String id) {
+
+        Optional<Client> client = clientDAO.trouverParId(id);
+        if (client.isPresent()) {
+            return  client;
+        }
+        return Optional.empty();
+    }
+
 }

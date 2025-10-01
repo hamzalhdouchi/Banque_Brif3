@@ -12,5 +12,8 @@ public class CompteService {
 
     private CompteDAO compteDAO;
 
+    public CompteService(CompteDAO compteDAO) {
+        this.compteDAO = compteDAO;
+    }
 
 }

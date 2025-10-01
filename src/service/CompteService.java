@@ -23,4 +23,9 @@ public class CompteService {
     public void modifierCompte(Compte compte) {
         compteDAO.modifier(compte);
     }
+
+
+    public boolean supprimerCompte(String numero) {
+        return compteDAO.supprimer(numero);
+    }
 }

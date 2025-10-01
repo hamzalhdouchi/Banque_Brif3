@@ -27,4 +27,11 @@ public class ClientService {
         boolean ajouter = clientDAO.ajouter(client1);
         return ajouter;
     }
+
+    public boolean modifierClient(Client client) {
+
+        Client client1 = new Client(client.id(), client.nom(), client.email());
+        boolean modifier = clientDAO.modifier(client1);
+        return modifier;
+    }
 }

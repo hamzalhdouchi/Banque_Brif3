@@ -11,4 +11,13 @@ import java.util.List;
 import java.util.Optional;
 
 public class ClientService {
+
+    private final ClientDAO clientDAO;
+    private final CompteDAO compteDAO;
+
+    public ClientService(ClientDAO clientDAO, CompteDAO compteDAO) {
+        this.clientDAO = clientDAO;
+        this.compteDAO = compteDAO;
+    }
+
 }

@@ -20,4 +20,11 @@ public class ClientService {
         this.compteDAO = compteDAO;
     }
 
+    public boolean ajouterClient(Client client) {
+
+        Client client1 = new Client(client.id(), client.nom(), client.email());
+
+        boolean ajouter = clientDAO.ajouter(client1);
+        return ajouter;
+    }
 }

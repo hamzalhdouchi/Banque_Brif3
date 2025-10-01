@@ -35,7 +35,6 @@ public class ClientService {
         return modifier;
     }
 
-
     public boolean supprimerClient(String id) {
 
         boolean sup =  clientDAO.supprimer(id);
@@ -77,4 +76,13 @@ public class ClientService {
         double total = comptes.stream().filter(p -> p.getIdClient().equals(idClient)).mapToDouble(p -> p.getSolde()).sum();
         return total;
     }
+
+    public int compterComptesClient(String idClient) {
+
+        List<Compte>  comptes = compteDAO.trouverTous();
+
+        long  total = comptes.stream().filter(p -> p.getIdClient().equals(idClient)).count();
+        return (int) total;
+    }
+
 }

@@ -57,4 +57,16 @@ public class ClientService {
         return client;
     }
 
+    public Optional<Client> trouverClientParNom(String nom) {
+
+        List<Client> clients = clientDAO.trouverTous();
+        Client newClient = null;
+
+        newClient = clients.stream().filter(p -> p.nom().equals(nom)).findFirst().orElse(null);
+
+        if (newClient == null) {
+            return Optional.empty();
+        }
+        return Optional.of(newClient);
+    }
 }

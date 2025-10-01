@@ -20,4 +20,7 @@ public class CompteService {
         return compteDAO.ajouter(compte);
     }
 
+    public void modifierCompte(Compte compte) {
+        compteDAO.modifier(compte);
+    }
 }

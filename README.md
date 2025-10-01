@@ -132,3 +132,7 @@ CREATE TABLE Transaction (
 );
 
 ```
+### Diagram Class
+
+
+![Capture d'écran 2025-09-29 141103.png](../../OneDrive/Pictures/Screenshots%201/Capture%20d%27%C3%A9cran%202025-09-29%20141103.png)

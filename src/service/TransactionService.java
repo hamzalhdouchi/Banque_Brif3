@@ -166,4 +166,17 @@ public class TransactionService implements TransactionServiceInterface {
         }
         return transactionsParType;
     }
+
+    public List<Transaction> trouverParCompte(String idCompte) {
+        List<Transaction> transactions = trouveAll();
+        List<Transaction> transactionsCompte = new ArrayList<>();
+        transactionsCompte = transactions.stream()
+                .filter(t -> t.idCompte().equals(idCompte))
+                .sorted(Comparator.comparing(Transaction::date).reversed())
+                .collect(Collectors.toList());
+        if(transactionsCompte.isEmpty()){
+            return null;
+        }
+        return transactionsCompte;
+    }
 }

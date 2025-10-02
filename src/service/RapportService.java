@@ -31,7 +31,6 @@ public class RapportService implements RapportServiceInterface {
             throw new RuntimeException("Internal error,please try again late!",e);
         }
     }
-
     private double getTotalBalanceForClient(Client c){
         try{
             List<Compte> accounts = compteService.trouverParClient(c.id());
@@ -57,7 +56,6 @@ public class RapportService implements RapportServiceInterface {
         }        return Map.of();
     }
 
-
     public List<Transaction> TransactionsSuspectesParMontant(double montant) {
         List<Transaction> transactions = transactionService.trouveAll();
         List<Transaction> newtransactions = transactions.stream().filter(t -> t.montant() >= montant).collect(Collectors.toList());
@@ -68,7 +66,6 @@ public class RapportService implements RapportServiceInterface {
     }
 
 
-
     public List<Transaction> TransactionsSuspectesParLeiu(String lieu) {
         List<Transaction> transactions = transactionService.trouveAll();
         List<Transaction> newtransactions = transactions.stream().filter(t-> !t.lieu().equals(lieu)).collect(Collectors.toList());
@@ -77,7 +74,6 @@ public class RapportService implements RapportServiceInterface {
         }
         return List.of();
     }
-
 
     public List<Compte> InactifCompte(int moisInactivite) {
         List<Transaction> transactions = transactionService.trouveAll();
@@ -130,4 +126,5 @@ public class RapportService implements RapportServiceInterface {
         return newListeTransaction;
 
     }
+
 }

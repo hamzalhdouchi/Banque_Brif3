@@ -35,4 +35,11 @@ public class ValidationUtil {
         }
         return PATTERN_NUM.matcher(numero).matches();
     }
+
+    public static boolean estNomValide(String nom) {
+        if (nom == null || nom.trim().isEmpty()) {
+            return false;
+        }
+        return PATTERN_NOM.matcher(nom.trim()).matches();
+    }
 }

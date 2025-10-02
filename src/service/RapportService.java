@@ -41,4 +41,19 @@ public class RapportService implements RapportServiceInterface {
         }
 
     }
+
+
+    public Map<String, Object> genererRapportMensuel(int annee, int mois) {
+        try{
+            List<Transaction> txs = transactionService.ParMois(annee, mois);
+            Map<TypeTransaction,Long> countByType = txs.stream().collect(Collectors.groupingBy(Transaction::type,Collectors.counting()));
+            double totalVolume = txs.stream().mapToDouble(Transaction::montant).sum();
+            Map<String,Object> repoort = new HashMap<>();
+            repoort.put("countByType",countByType);
+            repoort.put("totalVolume",totalVolume);
+            return repoort;
+        }catch(Exception e){
+            System.out.println("Internal error,please try again late!");
+        }        return Map.of();
+    }
 }

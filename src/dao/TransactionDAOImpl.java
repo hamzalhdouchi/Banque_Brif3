@@ -18,7 +18,6 @@ public class TransactionDAOImpl implements TransactionDAO {
         this.connection = connection;
     }
 
-
     @Override
     public boolean ajouter(Transaction transaction) {
         String sql = "insert into transaction (date_transaction,montant,type_transaction,id_compte,lieu) values (?,?,?,?,?)";
@@ -38,6 +37,7 @@ public class TransactionDAOImpl implements TransactionDAO {
         return false;
     }
 
+
     public boolean supprimer(Transaction transaction) {
         String sql = "delete from transaction where id = ?";
         try{
@@ -50,7 +50,6 @@ public class TransactionDAOImpl implements TransactionDAO {
             return false;
         }
     }
-
     @Override
     public List<Transaction> trouverToutes() {
 
@@ -77,6 +76,35 @@ public class TransactionDAOImpl implements TransactionDAO {
             return  null;
         }
 
+    }
+
+    public List<Transaction> trouverParDate(LocalDateTime startDate, LocalDateTime endDate) {
+        String sql = "SELECT * FROM transaction WHERE date_transaction >= ? AND date_transaction <= ?";
+        List<Transaction> transactions = new ArrayList<>();
+        try {
+            PreparedStatement pc = connection.prepareStatement(sql);
+            pc.setTimestamp(1, Timestamp.valueOf(startDate));
+            pc.setTimestamp(2, Timestamp.valueOf(endDate));
+            ResultSet rs = pc.executeQuery();
+
+            while (rs.next()) {
+                String id = rs.getString("id");
+                Timestamp ts = rs.getTimestamp("date_transaction");
+                LocalDateTime date_compte = ts.toLocalDateTime();
+                double montant = rs.getDouble("montant");
+                String type_transaction = rs.getString("type_transaction");
+                String id_compte = rs.getString("id_compte");
+                String lieu = rs.getString("lieu");
+                TypeTransaction typeT = TypeTransaction.valueOf(type_transaction);
+
+                Transaction transaction = new Transaction(id, date_compte, montant, typeT, lieu, id_compte);
+                transactions.add(transaction);
+            }
+            return transactions;
+        } catch (Exception e) {
+            System.out.println("Erreur lors de la récupération des transactions : " + e.getMessage());
+            return List.of();
+        }
     }
 
 }

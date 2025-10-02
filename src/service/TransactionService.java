@@ -35,7 +35,6 @@ public class TransactionService implements TransactionServiceInterface {
         }
     }
 
-
     public List<Transaction> trouveAll() {
 
         List<Transaction> transactions = transactionDAO.trouverToutes();
@@ -45,7 +44,6 @@ public class TransactionService implements TransactionServiceInterface {
         return transactions;
 
     }
-
     public List<Transaction> trouverParClient(String idClient) {
 
         List<Transaction> transactions = trouveAll();
@@ -67,6 +65,7 @@ public class TransactionService implements TransactionServiceInterface {
         return transactionsClient;
     }
 
+
     public int CalculerCount(String idCompte, String idClient) {
 
         if(idClient.isEmpty()){
@@ -85,6 +84,7 @@ public class TransactionService implements TransactionServiceInterface {
         return 0;
 
     }
+
 
     public double CalculerMoyane(String idCompte, String idClient) {
 
@@ -116,7 +116,6 @@ public class TransactionService implements TransactionServiceInterface {
         return transactionsCompte;
 
     }
-
 
     public List<Transaction> filtreParType(TypeTransaction type) {
         List<Transaction> transactions = trouveAll();
@@ -154,6 +153,7 @@ public class TransactionService implements TransactionServiceInterface {
 
     }
 
+
     public Map<TypeTransaction, List<Transaction>> regrouperParType() {
         List<Transaction> transactions = trouveAll();
 
@@ -166,6 +166,7 @@ public class TransactionService implements TransactionServiceInterface {
         }
         return transactionsParType;
     }
+
 
     public List<Transaction> trouverParCompte(String idCompte) {
         List<Transaction> transactions = trouveAll();
@@ -192,5 +193,29 @@ public class TransactionService implements TransactionServiceInterface {
             return null;
         }
         return comptesClient;
+    }
+
+    public boolean mettreAJourSolde(String idCompte, double nouveauSolde){
+
+        boolean result = false;
+        result = compteDAO.mettreAJourSolde(idCompte, nouveauSolde);
+        return result;
+    }
+
+    public List<Compte> troveToutCompte(){
+        List<Compte> comptes = compteDAO.trouverTous();
+        if (comptes.isEmpty()){
+            System.out.println("Le compte n'existe pas");
+            return null;
+        }
+        return comptes;
+    }
+
+    public List<Transaction> ParMois(int annee,int mois){
+        YearMonth ym = YearMonth.of(annee,mois);
+        LocalDateTime from = ym.atDay(1).atStartOfDay();
+        LocalDateTime to = ym.atEndOfMonth().atTime(23,59,59);
+        List<Transaction> txs = transactionDAO.trouverParDate(from, to);
+        return txs;
     }
 }

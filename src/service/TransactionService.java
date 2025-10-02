@@ -129,4 +129,16 @@ public class TransactionService implements TransactionServiceInterface {
         return transactionsCompte;
 
     }
+
+    public List<Transaction> filtreParLeiu(String leiu) {
+        List<Transaction> transactions = trouveAll();
+        List<Transaction> transactionsCompte = new ArrayList<>();
+        transactionsCompte = transactions.stream().filter(t -> t.lieu().equals(leiu)).collect(Collectors.toList());
+
+        if (transactionsCompte.isEmpty()){
+            return null;
+        }
+        return transactionsCompte;
+
+    }
 }

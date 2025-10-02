@@ -47,4 +47,9 @@ public class ValidationUtil {
         return decouvert >= DECOUVERT_MIN && decouvert <= DECOUVERT_MAX;
     }
 
+
+    public static boolean estTauxInteretValide(double taux) {
+        return taux >= TAUX_INTERET_MIN && taux <= TAUX_INTERET_MAX;
+    }
+
 }

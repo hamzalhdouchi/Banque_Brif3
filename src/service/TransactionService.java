@@ -45,4 +45,25 @@ public class TransactionService implements TransactionServiceInterface {
         return transactions;
 
     }
+
+    public List<Transaction> trouverParClient(String idClient) {
+
+        List<Transaction> transactions = trouveAll();
+        List<Transaction> transactionsClient = new ArrayList<>();
+        List<Compte> comptes = compteDAO.trouverTous();
+
+        List<Compte> comptesClient = comptes.stream()
+                .filter(c -> c.getIdClient().equals(idClient))
+                .collect(Collectors.toList());
+
+        for (Compte compte : comptesClient) {
+            List<Transaction> transPourCompte = transactions.stream()
+                    .filter(t -> t.idCompte().equals(compte.getId()))
+                    .collect(Collectors.toList());
+
+            transactionsClient.addAll(transPourCompte);
+        }
+
+        return transactionsClient;
+    }
 }

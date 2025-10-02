@@ -16,4 +16,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class TransactionService implements TransactionServiceInterface {
+
+    private TransactionDAO transactionDAO;
+    private CompteDAO compteDAO;
+
+    public TransactionService(TransactionDAO transactionDAO, CompteDAO compteDAO) {
+        this.transactionDAO = transactionDAO;
+        this.compteDAO = compteDAO;
+    }
 }

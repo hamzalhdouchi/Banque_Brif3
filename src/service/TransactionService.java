@@ -153,4 +153,17 @@ public class TransactionService implements TransactionServiceInterface {
         return transactionsCompte;
 
     }
+
+    public Map<TypeTransaction, List<Transaction>> regrouperParType() {
+        List<Transaction> transactions = trouveAll();
+
+        Map<TypeTransaction, List<Transaction>> transactionsParType =
+                transactions.stream()
+                        .collect(Collectors.groupingBy(Transaction::type));
+
+        if (transactionsParType.isEmpty()) {
+            return null;
+        }
+        return transactionsParType;
+    }
 }

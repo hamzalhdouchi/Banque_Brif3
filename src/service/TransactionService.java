@@ -104,4 +104,16 @@ public class TransactionService implements TransactionServiceInterface {
         return 0;
 
     }
+
+    public List<Transaction> filtreParMontant(double montant) {
+        List<Transaction> transactions = trouveAll();
+        List<Transaction> transactionsCompte = new ArrayList<>();
+        transactionsCompte = transactions.stream().filter(t -> t.montant() == montant).collect(Collectors.toList());
+
+        if (transactionsCompte.isEmpty()){
+            return null;
+        }
+        return transactionsCompte;
+
+    }
 }

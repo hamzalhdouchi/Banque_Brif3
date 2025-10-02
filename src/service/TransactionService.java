@@ -116,4 +116,17 @@ public class TransactionService implements TransactionServiceInterface {
         return transactionsCompte;
 
     }
+
+
+    public List<Transaction> filtreParType(TypeTransaction type) {
+        List<Transaction> transactions = trouveAll();
+        List<Transaction> transactionsCompte = new ArrayList<>();
+        transactionsCompte = transactions.stream().filter(t -> t.type().equals(type)).collect(Collectors.toList());
+
+        if (transactionsCompte.isEmpty()){
+            return null;
+        }
+        return transactionsCompte;
+
+    }
 }

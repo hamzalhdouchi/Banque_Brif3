@@ -143,4 +143,64 @@ public class MenuClient{
             System.out.println("Erreur lors de la suppression.");
         }
     }
+
+    private void afficherTous() {
+        List<Client> clients = clientService.trouverTousLesClients();
+        if (clients == null || clients.isEmpty()) {
+            System.out.println("Aucun client trouvé.");
+            return;
+        }
+        clients.forEach(c-> {
+            System.out.println("-----------------------------------");
+            System.out.println("ID       : "+c.id());
+            System.out.println("Nom       : "+c.nom());
+            System.out.println("Email     : "+c.email());
+            System.out.println("------------------------------------");
+        });
+    }
+
+    private void trouverParId() {
+        System.out.print("ID: ");
+        String id = scanner.nextLine();
+        boolean ValidID = ValidationUtil.estIdValide(id);
+        if (!ValidID) {
+            System.out.println("The id is not valid "+id);
+        }
+
+        Optional<Client> client = clientService.trouverClientParId(id);
+        if (client.isPresent()) {
+
+        }
+        client.ifPresentOrElse(
+                c -> {
+                    System.out.println("------------------------------");
+                    System.out.println("ID     : " + c.id());
+                    System.out.println("Nom    : " + c.nom());
+                    System.out.println("Email  : " + c.email());
+                    System.out.println("------------------------------");
+                },
+                () -> System.out.println("Client introuvable !")
+        );
+    }
+
+    private void trouverParNom() {
+        System.out.print("Nom: ");
+        String nom = scanner.nextLine();
+        boolean ValidClient = ValidationUtil.estNomValide(nom);
+        if (!ValidClient) {
+            System.out.println("The nom is not valid "+nom);
+        }
+
+        Optional<Client> client = clientService.trouverClientParNom(nom);
+        client.ifPresentOrElse(
+                c -> {
+                    System.out.println("-----------------------------");
+                    System.out.println("ID     : " + c.id());
+                    System.out.println("Nom    : " + c.nom());
+                    System.out.println("Email  : " + c.email());
+                    System.out.println("-----------------------------");
+                },
+                () -> System.out.println("Client introuvable !")
+        );
+    }
 }

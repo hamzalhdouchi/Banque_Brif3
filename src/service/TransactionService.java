@@ -86,4 +86,22 @@ public class TransactionService implements TransactionServiceInterface {
 
     }
 
+    public double CalculerMoyane(String idCompte, String idClient) {
+
+        if (idClient.isEmpty()) {
+            List<Transaction> transactions = trouveAll();
+            double transactionsClient;
+            transactionsClient = transactions.stream().filter(c -> c.idCompte().equals(idCompte)).mapToDouble(Transaction::montant).average().getAsDouble();
+
+            return transactionsClient;
+        } else if (idCompte.isEmpty()) {
+            List<Transaction> transactions = trouverParClient(idClient);
+            double transactionsClient;
+            transactionsClient = transactions.stream().filter(c -> c.idCompte().equals(idCompte)).mapToDouble(Transaction::montant).average().getAsDouble();
+            return transactionsClient;
+
+        }
+        return 0;
+
+    }
 }

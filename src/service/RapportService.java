@@ -66,4 +66,16 @@ public class RapportService implements RapportServiceInterface {
         }
         return List.of();
     }
+
+
+
+    public List<Transaction> TransactionsSuspectesParLeiu(String lieu) {
+        List<Transaction> transactions = transactionService.trouveAll();
+        List<Transaction> newtransactions = transactions.stream().filter(t-> !t.lieu().equals(lieu)).collect(Collectors.toList());
+        if(newtransactions.size() > 0) {
+            return newtransactions;
+        }
+        return List.of();
+    }
+
 }

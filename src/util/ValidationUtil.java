@@ -24,4 +24,15 @@ public class ValidationUtil {
         }
         return PATTERN_EMAIL.matcher(email.trim()).matches();
     }
+
+
+    public static boolean estMontantValide(double montant) {
+        return montant >= MONTANT_MIN && montant <= MONTANT_MAX;
+    }
+    public static boolean NumeroValide(String numero) {
+        if (numero == null || numero.trim().isEmpty()) {
+            return false;
+        }
+        return PATTERN_NUM.matcher(numero).matches();
+    }
 }

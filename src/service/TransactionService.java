@@ -34,4 +34,15 @@ public class TransactionService implements TransactionServiceInterface {
             return false;
         }
     }
+
+
+    public List<Transaction> trouveAll() {
+
+        List<Transaction> transactions = transactionDAO.trouverToutes();
+        if(transactions.isEmpty()) {
+            return List.of();
+        }
+        return transactions;
+
+    }
 }

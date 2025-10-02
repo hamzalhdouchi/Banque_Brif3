@@ -179,4 +179,18 @@ public class TransactionService implements TransactionServiceInterface {
         }
         return transactionsCompte;
     }
+
+    public List<Compte> compteClient(String idClient) {
+        List<Compte> comptes = compteDAO.trouverTous();
+
+        List<Compte> comptesClient = comptes.stream()
+                .filter(c -> c.getIdClient().equals(idClient))
+                .collect(Collectors.toList());
+
+        if(comptesClient.isEmpty()){
+
+            return null;
+        }
+        return comptesClient;
+    }
 }

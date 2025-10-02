@@ -11,6 +11,7 @@ public class ValidationUtil {
     private static final Pattern PATTERN_NUM = Pattern.compile("^^[a-zA-ZÀ-ÿ0-9\\s,'-]{6,100}$");
 
 
+
     private static final double MONTANT_MIN = 0.01;
     private static final double MONTANT_MAX = 1000000.00;
     private static final double DECOUVERT_MIN = 0.00;
@@ -24,7 +25,6 @@ public class ValidationUtil {
         }
         return PATTERN_EMAIL.matcher(email.trim()).matches();
     }
-
 
     public static boolean estMontantValide(double montant) {
         return montant >= MONTANT_MIN && montant <= MONTANT_MAX;
@@ -62,4 +62,13 @@ public class ValidationUtil {
         }
         return lieuNettoye;
     }
+
+    public static boolean estIdValide(String id) {
+        if (id == null || id.trim().isEmpty()) {
+            return false;
+        }
+        return PATTERN_ID.matcher(id.trim()).matches();
+    }
+
+
 }

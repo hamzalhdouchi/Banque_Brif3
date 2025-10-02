@@ -21,4 +21,24 @@ public class RapportService implements RapportServiceInterface {
         this.clientService = clientService;
         this.transactionService = transactionService;
     }
+
+    public List<Client> genererTop5ClientsParSolde() {
+        try{
+            List<Client> clients = clientService.trouverTousLesClients();
+            return clients.stream()
+                    .sorted(Comparator.comparingDouble(this::getTotalBalanceForClient).reversed()).limit(5).collect(Collectors.toList());
+        }catch(Exception e){
+            throw new RuntimeException("Internal error,please try again late!",e);
+        }
+    }
+
+    private double getTotalBalanceForClient(Client c){
+        try{
+            List<Compte> accounts = compteService.trouverParClient(c.id());
+            return accounts.stream().mapToDouble(Compte::getSolde).sum();
+        }catch(Exception e){
+            throw new RuntimeException("Internal error,please try again late!",e);
+        }
+
+    }
 }

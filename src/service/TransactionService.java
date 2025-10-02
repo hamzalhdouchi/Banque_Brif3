@@ -141,4 +141,16 @@ public class TransactionService implements TransactionServiceInterface {
         return transactionsCompte;
 
     }
+
+    public List<Transaction> filtreParDate(LocalDateTime Date) {
+        List<Transaction> transactions = trouveAll();
+        List<Transaction> transactionsCompte = new ArrayList<>();
+        transactionsCompte = transactions.stream().filter(t -> t.date().equals(Date)).collect(Collectors.toList());
+
+        if (transactionsCompte.isEmpty()){
+            return null;
+        }
+        return transactionsCompte;
+
+    }
 }

@@ -66,4 +66,24 @@ public class TransactionService implements TransactionServiceInterface {
 
         return transactionsClient;
     }
+
+    public int CalculerCount(String idCompte, String idClient) {
+
+        if(idClient.isEmpty()){
+            List<Transaction> transactions = trouveAll();
+            long transactionsClient ;
+            transactionsClient = transactions.stream().filter(c -> c.idCompte().equals(idCompte)).count();
+
+            return (int) transactionsClient;
+        } else if (idCompte.isEmpty()) {
+            List<Transaction> transactions = trouverParClient(idClient);
+            long transactionsClient ;
+            transactionsClient = transactions.stream().filter(c -> c.idCompte().equals(idCompte)).count();
+            return (int) transactionsClient;
+
+        }
+        return 0;
+
+    }
+
 }

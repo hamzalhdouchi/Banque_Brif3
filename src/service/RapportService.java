@@ -78,4 +78,25 @@ public class RapportService implements RapportServiceInterface {
         return List.of();
     }
 
+
+    public List<Compte> InactifCompte(int moisInactivite) {
+        List<Transaction> transactions = transactionService.trouveAll();
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime Datelimite = now.minusMonths(moisInactivite);
+        List<String> accountIdsWithRecentTransactions = transactions.stream()
+                .filter(t -> t.date().isAfter(Datelimite))
+                .map(Transaction::idCompte)
+                .distinct()
+                .collect(Collectors.toList());
+
+        List<Compte> comptes = compteService.trouverTo();
+        List<Compte> inactiveAccounts = comptes.stream()
+                .filter(c -> !accountIdsWithRecentTransactions.contains(c.getId()))
+                .collect(Collectors.toList());
+        if(inactiveAccounts.size() > 0) {
+            return inactiveAccounts;
+        }
+        return List.of();
+    }
+
 }

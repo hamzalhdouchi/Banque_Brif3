@@ -99,4 +99,35 @@ public class RapportService implements RapportServiceInterface {
         return List.of();
     }
 
+    public List<Transaction> operationsMoinsMinute(int maxTransactionsPerMinute) {
+
+
+        List<Transaction> transactions = transactionService.trouveAll();
+
+        Map<String,List<Transaction>>  ListTransaction = new HashMap<>();
+
+        List<Transaction> newListeTransaction = new ArrayList<>();
+        ListTransaction = transactions.stream().collect(Collectors.groupingBy(Transaction::idCompte));
+
+        for (List<Transaction> listTransaction : ListTransaction.values()) {
+
+            listTransaction.sort(Comparator.comparing(Transaction::date));
+            for(int i = 0;i<listTransaction.size();i++){
+                int count = 1;
+                for(int j = 1; j<listTransaction.size();j++){
+                    if(Duration.between(listTransaction.get(i).date(), listTransaction.get(j).date()).toSeconds() >= 60){
+                        count++;
+                    }
+                }
+                if(count > maxTransactionsPerMinute){
+                    newListeTransaction.add(listTransaction.get(i));
+                    for(int j=i;j<count+i;j++){
+                        newListeTransaction.add(listTransaction.get(j));
+                    }
+                }
+            }
+        }
+        return newListeTransaction;
+
+    }
 }

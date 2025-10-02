@@ -42,4 +42,9 @@ public class ValidationUtil {
         }
         return PATTERN_NOM.matcher(nom.trim()).matches();
     }
+
+    public static boolean estDecouvertValide(double decouvert) {
+        return decouvert >= DECOUVERT_MIN && decouvert <= DECOUVERT_MAX;
+    }
+
 }

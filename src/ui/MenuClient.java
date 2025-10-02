@@ -17,7 +17,7 @@ public class MenuClient{
     private final ClientServiceInterface clientService;
     private final Scanner scanner = new Scanner(System.in);
 
-    public MenuClient(ClientService client) {
+    public MenuClient(ClientServiceInterface client) {
         this.clientService = client;
     }
 
@@ -53,7 +53,6 @@ public class MenuClient{
             }
         }
     }
-
 
     private void ajouterClient() {
 
@@ -203,4 +202,36 @@ public class MenuClient{
                 () -> System.out.println("Client introuvable !")
         );
     }
+
+    public void calculerSoldeTotalClient(){
+        System.out.println("------------ calculerSoldeTotalClient ----------");
+        System.out.println("Entre ID de Compte");
+        String id = scanner.nextLine();
+        boolean ValidID = ValidationUtil.estIdValide(id);
+        if (!ValidID) {
+            System.out.println("The id is not valid "+id);
+        }
+        double solde = clientService.calculerSoldeTotalClient(id);
+        System.out.println("------------- SOLD TOTAL ------------");
+        System.out.println("SOLD TOTAL : " + solde);
+        System.out.println("-------------------------------------");
+    }
+
+
+    public void compterComptesClient(){
+        System.out.println("----------- compter Comptes Client -----------");
+        System.out.println("Entre ID de Compte");
+        String id = scanner.nextLine();
+        boolean ValidID = ValidationUtil.estIdValide(id);
+        if (!ValidID) {
+            System.out.println("The id is not valid "+id);
+        }
+        int compte = clientService.compterComptesClient(id);
+        System.out.println("------------ COMPTER SOLD TOTAL ------------");
+        System.out.println("COMPTER SOLD TOTAL : " + compte);
+        System.out.println("--------------------------------------------");
+    }
+
+
+
 }

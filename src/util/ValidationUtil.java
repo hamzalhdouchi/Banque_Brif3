@@ -52,4 +52,14 @@ public class ValidationUtil {
         return taux >= TAUX_INTERET_MIN && taux <= TAUX_INTERET_MAX;
     }
 
+    public static String formaterLieu(String lieu) {
+        if (lieu == null) {
+            return "Non spécifié";
+        }
+        String lieuNettoye = lieu.trim();
+        if (lieuNettoye.isEmpty()) {
+            return "Non spécifié";
+        }
+        return lieuNettoye;
+    }
 }

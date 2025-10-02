@@ -17,4 +17,11 @@ public class ValidationUtil {
     private static final double DECOUVERT_MAX = 5000.00;
     private static final double TAUX_INTERET_MIN = 0.01;
     private static final double TAUX_INTERET_MAX = 10.00;
+
+    public static boolean estEmailValide(String email) {
+        if (email == null || email.trim().isEmpty()) {
+            return false;
+        }
+        return PATTERN_EMAIL.matcher(email.trim()).matches();
+    }
 }

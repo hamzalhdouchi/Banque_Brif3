@@ -54,4 +54,93 @@ public class MenuClient{
         }
     }
 
+
+    private void ajouterClient() {
+
+        System.out.println("-----------------Ajouter Client---------------");
+        System.out.print("Entre ID (format CNE-12345): ");
+        String id = scanner.nextLine();
+        boolean ValidID = ValidationUtil.estIdValide(id);
+        if (!ValidID) {
+            System.out.println("The id is not valid "+id);
+            return;
+        }
+
+
+        System.out.print("Nom: ");
+        String nom = scanner.nextLine();
+        boolean ValidClient = ValidationUtil.estNomValide(nom);
+        if (!ValidClient) {
+            System.out.println("The nom is not valid "+ nom);
+            return;
+        }
+
+        System.out.print("Email: ");
+        String email = scanner.nextLine();
+        boolean ValidEmail = ValidationUtil.estEmailValide(email);
+        if (!ValidEmail) {
+            System.out.println("The email is not valid "+ email);
+            return;
+        }
+
+        Client client = new Client(id, nom, email);
+        boolean valide = clientService.ajouterClient(client);
+        if(valide){
+            System.out.println("Client ajouté avec succès !");
+            return;
+        } else {
+            System.out.println("Erreur lors de l'ajout.");
+            return;
+        }
+    }
+
+    private void modifierClient() {
+        System.out.print("ID du client à modifier: ");
+        String id = scanner.nextLine();
+        boolean ValidID = ValidationUtil.estIdValide(id);
+        if (!ValidID) {
+            System.out.println("The id is not valid " + id);
+        }
+        Optional<Client> optionalClient = clientService.trouverClientParId(id);
+        if (optionalClient.isEmpty()) {
+            System.out.println("Client introuvable !");
+            return;
+        }
+
+        System.out.print("Nouveau nom: ");
+        String nom = scanner.nextLine();
+        boolean ValidClient = ValidationUtil.estNomValide(nom);
+        if (!ValidClient) {
+            System.out.println("The nom is not valid "+nom);
+        }
+
+        System.out.print("Nouvel email: ");
+        String email = scanner.nextLine();
+        boolean ValidEmail = ValidationUtil.estEmailValide(email);
+        if (!ValidEmail) {
+            System.out.println("The email is not valid "+ email);
+        }
+
+        Client client = new Client(id, nom, email);
+        if (clientService.modifierClient(client)) {
+            System.out.println("Client modifié avec succès !");
+        } else {
+            System.out.println("Erreur lors de la modification.");
+        }
+    }
+
+    private void supprimerClient() {
+        System.out.print("ID du client à supprimer: ");
+        String id = scanner.nextLine();
+        boolean ValidID = ValidationUtil.estIdValide(id);
+        if (!ValidID) {
+            System.out.println("The id is not valid "+id);
+        }
+
+        if (clientService.supprimerClient(id)) {
+            System.out.println("Client supprimé avec succès !");
+        } else {
+            System.out.println("Erreur lors de la suppression.");
+        }
+    }
 }

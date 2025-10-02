@@ -56,4 +56,14 @@ public class RapportService implements RapportServiceInterface {
             System.out.println("Internal error,please try again late!");
         }        return Map.of();
     }
+
+
+    public List<Transaction> TransactionsSuspectesParMontant(double montant) {
+        List<Transaction> transactions = transactionService.trouveAll();
+        List<Transaction> newtransactions = transactions.stream().filter(t -> t.montant() >= montant).collect(Collectors.toList());
+        if(newtransactions.size() > 0) {
+            return newtransactions;
+        }
+        return List.of();
+    }
 }

@@ -24,4 +24,14 @@ public class TransactionService implements TransactionServiceInterface {
         this.transactionDAO = transactionDAO;
         this.compteDAO = compteDAO;
     }
+
+    public boolean enregistrerTransaction(Transaction transaction) {
+
+        boolean ajouter = transactionDAO.ajouter(transaction);
+        if (ajouter) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

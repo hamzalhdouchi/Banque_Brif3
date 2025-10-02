@@ -1,4 +1,4 @@
-package dao.enums;
+package enums;
 
 public enum TypeTransaction {
     VERSEMENT, RETRAIT, VIREMENT

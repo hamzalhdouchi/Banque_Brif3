@@ -1,7 +1,7 @@
 package dao;
 
 import dao.Interfase.CompteDAO;
-import dao.enums.TypeCompte;
+import enums.TypeCompte;
 import entity.Compte;
 import entity.CompteCourant;
 import entity.CompteEpargne;

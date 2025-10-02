@@ -1,6 +1,6 @@
 package entity;
 
-import dao.enums.TypeTransaction;
+import enums.TypeTransaction;
 
 import java.time.LocalDateTime;
 

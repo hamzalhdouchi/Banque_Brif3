@@ -1,6 +1,6 @@
 package entity;
 
-import dao.enums.TypeCompte;
+import enums.TypeCompte;
 
 public final class CompteEpargne extends Compte {
     private double tauxInteret;

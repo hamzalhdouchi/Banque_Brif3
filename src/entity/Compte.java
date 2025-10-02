@@ -1,6 +1,6 @@
 package entity;
 
-import dao.enums.TypeCompte;
+import enums.TypeCompte;
 
 public sealed abstract class Compte permits CompteCourant, CompteEpargne {
     private final String id;

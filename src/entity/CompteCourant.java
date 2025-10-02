@@ -1,6 +1,6 @@
 package entity;
 
-import dao.enums.TypeCompte;
+import enums.TypeCompte;
 
 public final class CompteCourant extends Compte {
     private double decouvertAutorise;

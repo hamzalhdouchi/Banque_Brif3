@@ -134,5 +134,5 @@ CREATE TABLE Transaction (
 ```
 ### Diagram Class
 
-![Capture d'écran 2025-09-29 141103.png](../../OneDrive/Pictures/Screenshots%201/Capture%20d%27%C3%A9cran%202025-09-29%20141103.png)
+<img width="1518" height="643" alt="Capture d'écran 2025-09-29 141103" src="https://github.com/user-attachments/assets/8888cec8-22d1-4653-8f81-fa164dc6cf89" />
 

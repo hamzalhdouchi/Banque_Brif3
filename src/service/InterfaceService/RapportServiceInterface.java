@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface RapportServiceInterface {
 
-    List<Client> genererTop5ClientsParSolde();
+    Map<Client, Double> genererTop5ClientsParSolde();
 
     Map<String, Object> genererRapportMensuel(int annee, int mois);
 

@@ -14,10 +14,10 @@ import java.util.Scanner;
 
 public class MenuCompte {
 
-    private final CompteServiceInterface compteService;
+    private final CompteService compteService;
     private final Scanner scanner = new Scanner(System.in);
 
-    public MenuCompte(CompteServiceInterface compteService) {
+    public MenuCompte(CompteService compteService) {
         this.compteService = compteService;
     }
 

@@ -22,11 +22,17 @@ public class RapportService implements RapportServiceInterface {
         this.transactionService = transactionService;
     }
 
-    public List<Client> genererTop5ClientsParSolde() {
+    public Map<Client, Double> genererTop5ClientsParSolde() {
         try{
             List<Client> clients = clientService.trouverTousLesClients();
-            return clients.stream()
-                    .sorted(Comparator.comparingDouble(this::getTotalBalanceForClient).reversed()).limit(5).collect(Collectors.toList());
+            Map<Client, Double> top = new HashMap<>();
+            clients.stream()
+                    .sorted(Comparator.comparingDouble(this::getTotalBalanceForClient)
+                            .reversed()).limit(5)
+                    .peek(e->top.put(e,getTotalBalanceForClient(e)));
+
+            return top;
+
         }catch(Exception e){
             throw new RuntimeException("Internal error,please try again late!",e);
         }

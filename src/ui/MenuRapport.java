@@ -50,16 +50,18 @@ public class MenuRapport {
 
     private void afficherTopClients() {
         System.out.println("\n--- Top 5 Clients par Solde ---");
-        List<Client> clients = rapportService.genererTop5ClientsParSolde();
+        Map<Client, Double> clients = rapportService.genererTop5ClientsParSolde();
 
-        clients.forEach(c -> {
+        clients.forEach((client, solde) -> {
             System.out.println("-----------------------------------");
-            System.out.println("ID       : " + c.id());
-            System.out.println("Nom      : " + c.nom());
-            System.out.println("Email    : " + c.email());
+            System.out.println("ID       : " + client.id());
+            System.out.println("Nom      : " + client.nom());
+            System.out.println("Email    : " + client.email());
+            System.out.println("Solde    : " + solde);
             System.out.println("-----------------------------------");
         });
     }
+
 
     private void afficherTransactionsSuspectesMontant() {
         System.out.println("\n--- Transactions suspectes ---");

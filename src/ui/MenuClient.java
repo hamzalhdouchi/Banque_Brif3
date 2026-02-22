@@ -14,10 +14,10 @@ import java.util.Scanner;
 
 public class MenuClient{
 
-    private final ClientServiceInterface clientService;
+    private final ClientService clientService;
     private final Scanner scanner = new Scanner(System.in);
 
-    public MenuClient(ClientServiceInterface client) {
+    public MenuClient(ClientService client) {
         this.clientService = client;
     }
 
